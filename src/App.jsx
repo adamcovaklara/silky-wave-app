@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from "react-router-dom";
-import { Button } from "./components/ui/button";
-import { Card, CardContent } from "./components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import { ShoppingCart, Globe } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 
@@ -60,13 +60,13 @@ function Home({ language }) {
   const t = translations[language];
   return (
     <motion.main
-      className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-6 p-8 bg-gray-100"
+      className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-6 p-8 bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
     >
       <Link to="/wraps" className="block">
-        <Card className="cursor-pointer hover:shadow-lg transform hover:scale-105 transition-transform duration-300 h-64 flex items-center justify-center text-xl shadow-none">
+        <Card className="cursor-pointer hover:shadow-xl transform hover:scale-105 transition-transform duration-300 h-64 flex items-center justify-center text-2xl bg-gradient-to-br from-pink-200 via-purple-200 to-blue-200 text-gray-900 font-semibold rounded-lg shadow-md">
           <CardContent className="flex items-center justify-center h-full">
             {t.wraps}
           </CardContent>
@@ -74,7 +74,7 @@ function Home({ language }) {
       </Link>
 
       <Link to="/shawls" className="block">
-        <Card className="cursor-pointer hover:shadow-lg transform hover:scale-105 transition-transform duration-300 h-64 flex items-center justify-center text-xl shadow-none">
+        <Card className="cursor-pointer hover:shadow-xl transform hover:scale-105 transition-transform duration-300 h-64 flex items-center justify-center text-2xl bg-gradient-to-br from-green-200 via-green-300 to-yellow-200 text-gray-900 font-semibold rounded-lg shadow-md">
           <CardContent className="flex items-center justify-center h-full">
             {t.shawls}
           </CardContent>
@@ -145,38 +145,47 @@ export default function SimpleWebPage() {
 
   return (
     <Router>
-      <div className="flex flex-col min-h-screen">
-        <header className="bg-gray-800 text-white p-4 flex flex-col md:flex-row justify-between items-center gap-4">
-          <Link to="/" className="text-xl font-bold hover:text-gray-300 transition-colors duration-300">My WebApp</Link>
+      <div className="flex flex-col min-h-screen bg-pink-50">
+        <header className="bg-gradient-to-r from-pink-300 via-purple-300 via-blue-300 via-green-300 to-yellow-300 text-gray-900 p-4 flex flex-col md:flex-row justify-between items-center gap-4 rounded-b-lg shadow-md">
+          <Link to="/" className="text-xl font-bold hover:text-gray-700 transition-colors duration-300">
+            My WebApp
+          </Link>
           <nav className="flex flex-wrap justify-center gap-4">
             <Link to="/">
-              <Button variant="ghost" className="transition-transform hover:scale-105 duration-300">
+              <Button variant="ghost" className="transition-transform hover:scale-105 duration-300 text-purple-600 hover:text-purple-500">
                 {t.home}
               </Button>
             </Link>
             <Link to="/about">
-              <Button variant="ghost" className="transition-transform hover:scale-105 duration-300">
+              <Button variant="ghost" className="transition-transform hover:scale-105 duration-300 text-purple-600 hover:text-purple-500">
                 {t.about}
               </Button>
             </Link>
             <Link to="/contact">
-              <Button variant="ghost" className="transition-transform hover:scale-105 duration-300">
+              <Button variant="ghost" className="transition-transform hover:scale-105 duration-300 text-purple-600 hover:text-purple-500">
                 {t.contact}
               </Button>
             </Link>
             <Link to="/cart">
-              <Button variant="ghost" className="transition-transform hover:scale-105 duration-300">
+              <Button variant="ghost" className="transition-transform hover:scale-105 duration-300 text-purple-600 hover:text-purple-500">
                 {t.cart}
               </Button>
             </Link>
           </nav>
           <div className="flex items-center gap-4">
-            <Button variant="ghost" className="flex items-center gap-1 transition-transform hover:scale-105 duration-300" onClick={toggleLanguage}>
+            <Button
+              variant="ghost"
+              className="flex items-center gap-1 transition-transform hover:scale-105 duration-300 text-purple-600 hover:text-purple-500"
+              onClick={toggleLanguage}
+            >
               <Globe className="w-4 h-4" />
               {language}
             </Button>
             <Link to="/cart">
-              <Button variant="ghost" className="flex items-center gap-1 transition-transform hover:scale-105 duration-300">
+              <Button
+                variant="ghost"
+                className="flex items-center gap-1 transition-transform hover:scale-105 duration-300 text-purple-600 hover:text-purple-500"
+              >
                 <ShoppingCart className="w-4 h-4" />
                 {t.cart}
               </Button>
@@ -186,19 +195,36 @@ export default function SimpleWebPage() {
 
         <AnimatedRoutes language={language} />
 
-        <footer className="bg-gray-800 text-white p-6 mt-auto">
+        <footer className="bg-gradient-to-r from-yellow-300 via-green-300 via-blue-300 via-purple-300 to-pink-300 text-gray-900 p-6 mt-auto rounded-t-lg shadow-inner">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <h2 className="font-semibold mb-2">{t.quickLinks}</h2>
               <ul className="space-y-1">
-                <li><Link to="/privacy-policy" className="hover:underline">{t.privacy}</Link></li>
-                <li><Link to="/terms-of-service" className="hover:underline">{t.terms}</Link></li>
+                <li>
+                  <Link to="/privacy-policy" className="hover:underline">
+                    {t.privacy}
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/terms-of-service" className="hover:underline">
+                    {t.terms}
+                  </Link>
+                </li>
               </ul>
             </div>
             <div>
               <h2 className="font-semibold mb-2">{t.connect}</h2>
               <ul className="space-y-1">
-                <li><a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:underline">Facebook</a></li>
+                <li>
+                  <a
+                    href="https://facebook.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:underline"
+                  >
+                    Facebook
+                  </a>
+                </li>
               </ul>
             </div>
           </div>
