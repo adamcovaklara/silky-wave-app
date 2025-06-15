@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from "react-router-dom";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/cart";
 import { Button } from "@/components/ui/button";
 import { ShoppingCart, Globe } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
@@ -11,13 +11,14 @@ const translations = {
     about: "About",
     contact: "Contact",
     cart: "Cart",
+    configuration: "Configuration",
     quickLinks: "Quick Links",
-    connect: "Connect",
+    connect: "Connect with us",
     wraps: "Wraps in Stock",
     shawls: "Shawls in Stock",
     aboutText: "This is the About page.",
     contactText: "This is the Contact page.",
-    cartText: "This is the Cart page.",
+    cartText: "Your cart is currently empty.",
     privacy: "Privacy Policy",
     terms: "Terms of Service",
     availableWraps: "Available Wraps",
@@ -28,13 +29,14 @@ const translations = {
     about: "O nás",
     contact: "Kontakt",
     cart: "Košík",
+    configuration: "Konfigurace",
     quickLinks: "Rychlé odkazy",
-    connect: "Spojte se",
+    connect: "Spojte se s námi",
     wraps: "Šátky skladem",
     shawls: "Šály skladem",
     aboutText: "Toto je stránka O nás.",
     contactText: "Toto je stránka Kontakt.",
-    cartText: "Toto je stránka Košík.",
+    cartText: "Váš košík je momentálně prázdný.",
     privacy: "Zásady ochrany osobních údajů",
     terms: "Obchodní podmínky",
     availableWraps: "Dostupné šátky",
@@ -112,6 +114,47 @@ function Shawls({ language }) {
   return <PageWrapper>{translations[language].availableShawls}</PageWrapper>;
 }
 
+function Configuration({ language }) {
+  const [image, setImage] = useState(null);
+  const [response, setResponse] = useState(null);
+
+  const handleUpload = async () => {
+    if (!image) return;
+
+    const formData = new FormData();
+    formData.append("image", image);
+
+    const res = await fetch("http://localhost:4000/api/process-image?colorize=true", {
+      method: "POST",
+      body: formData
+    });
+
+    const data = await res.json();
+    setResponse(data);
+  };
+
+  return (
+    <PageWrapper>
+      <h2 className="text-xl font-semibold mb-4">{translations[language].configurationText}</h2>
+      <input
+        type="file"
+        accept="image/*"
+        className="block mb-4"
+        onChange={(e) => setImage(e.target.files[0])}
+      />
+      <button
+        onClick={handleUpload}
+        className="bg-purple-300 hover:bg-purple-400 text-white px-4 py-2 rounded"
+      >
+        Process Image
+      </button>
+      {response && (
+        <p className="mt-4 text-green-600">{response.message}</p>
+      )}
+    </PageWrapper>
+  );
+}
+
 function AnimatedRoutes({ language }) {
   const location = useLocation();
   return (
@@ -119,8 +162,9 @@ function AnimatedRoutes({ language }) {
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<Home language={language} />} />
         <Route path="/about" element={<About language={language} />} />
-        <Route path="/contact" element={<Contact language={language} />} />
         <Route path="/cart" element={<Cart language={language} />} />
+        <Route path="/contact" element={<Contact language={language} />} />
+        <Route path="/configuration" element={<Configuration language={language} />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy language={language} />} />
         <Route path="/terms-of-service" element={<TermsOfService language={language} />} />
         <Route path="/wraps" element={<Wraps language={language} />} />
@@ -156,6 +200,11 @@ export default function SimpleWebPage() {
                 {t.home}
               </Button>
             </Link>
+            <Link to="/configuration">
+              <Button variant="ghost" className="transition-transform hover:scale-105 duration-300 text-purple-600 hover:text-purple-500">
+                {t.configuration}
+              </Button>
+            </Link>
             <Link to="/about">
               <Button variant="ghost" className="transition-transform hover:scale-105 duration-300 text-purple-600 hover:text-purple-500">
                 {t.about}
@@ -164,11 +213,6 @@ export default function SimpleWebPage() {
             <Link to="/contact">
               <Button variant="ghost" className="transition-transform hover:scale-105 duration-300 text-purple-600 hover:text-purple-500">
                 {t.contact}
-              </Button>
-            </Link>
-            <Link to="/cart">
-              <Button variant="ghost" className="transition-transform hover:scale-105 duration-300 text-purple-600 hover:text-purple-500">
-                {t.cart}
               </Button>
             </Link>
           </nav>
