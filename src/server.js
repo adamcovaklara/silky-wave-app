@@ -23,7 +23,8 @@ app.post("/api/process-image", upload.single("image"), async (req, res) => {
 
     const colorize = req.query.colorize === "true";
 
-    const transformer = sharp(inputPath).resize(500); // Resize for consistency
+    // Resize for consistency
+    const transformer = sharp(inputPath).resize(500).rotate() // <-- THIS auto-rotates based on EXIF
 
     if (colorize) {
       transformer.tint({ r: 150, g: 100, b: 200 }); // Apply a purple tint
