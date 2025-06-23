@@ -68,19 +68,30 @@ function Home({ language }) {
       exit={{ opacity: 0 }}
     >
       <Link to="/wraps" className="block">
-        <Card className="cursor-pointer hover:shadow-xl transform hover:scale-105 transition-transform duration-300 h-64 flex items-center justify-center text-2xl bg-gradient-to-br from-pink-200 via-purple-200 to-blue-200 text-gray-900 font-semibold rounded-lg shadow-md">
-          <CardContent className="flex items-center justify-center h-full">
-            {t.wraps}
-          </CardContent>
-        </Card>
+        <div
+          className="relative cursor-pointer hover:shadow-xl transform hover:scale-105 transition-transform duration-300 rounded-xl shadow-lg overflow-hidden mb-6 bg-cover bg-center"
+          style={{
+            backgroundImage: "url('/images/wrap_background.png')",
+            minHeight: "300px",
+          }}
+        >
+          <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+            <h2 className="text-3xl text-white font-bold">{t.wraps}</h2>
+          </div>
+        </div>
       </Link>
-
       <Link to="/shawls" className="block">
-        <Card className="cursor-pointer hover:shadow-xl transform hover:scale-105 transition-transform duration-300 h-64 flex items-center justify-center text-2xl bg-gradient-to-br from-green-200 via-green-300 to-yellow-200 text-gray-900 font-semibold rounded-lg shadow-md">
-          <CardContent className="flex items-center justify-center h-full">
-            {t.shawls}
-          </CardContent>
-        </Card>
+        <div
+          className="relative cursor-pointer hover:shadow-xl transform hover:scale-105 transition-transform duration-300 rounded-xl shadow-lg overflow-hidden mb-6 bg-cover bg-center"
+          style={{
+            backgroundImage: "url('/images/shawl_background.png')",
+            minHeight: "300px",
+          }}
+        >
+          <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+            <h2 className="text-3xl text-white font-bold">{t.shawls}</h2>
+          </div>
+        </div>
       </Link>
     </motion.main>
   );
@@ -191,8 +202,13 @@ export default function SimpleWebPage() {
     <Router>
       <div className="flex flex-col min-h-screen bg-pink-50">
         <header className="bg-gradient-to-r from-pink-300 via-purple-300 via-blue-300 via-green-300 to-yellow-300 text-gray-900 p-4 flex flex-col md:flex-row justify-between items-center gap-4 rounded-b-lg shadow-md">
-          <Link to="/" className="text-xl font-bold hover:text-gray-700 transition-colors duration-300">
-            My WebApp
+         <Link to="/" className="flex items-center space-x-2">
+            <img
+              src="/logo-bg.png"
+              alt="Logo"
+              className="h-10 w-auto mr-2 rounded bg-white mix-blend-multiply"
+            />
+            <span className="text-2xl font-bold text-white">SilkyWave</span>
           </Link>
           <nav className="flex flex-wrap justify-center gap-4">
             <Link to="/">
