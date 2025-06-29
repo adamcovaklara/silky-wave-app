@@ -1,0 +1,9 @@
+# dependencies
+/node_modules
+
+# upload and processed images
+/processed
+/uploads
+
+# system files
+.DS_Store

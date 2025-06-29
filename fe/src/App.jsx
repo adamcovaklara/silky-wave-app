@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from "react-router-dom";
-import { Card, CardContent } from "@/components/ui/cart";
 import { Button } from "@/components/ui/button";
 import { ShoppingCart, Globe } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
+
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsOfService from "./pages/TermsOfService";
+import CookieWall from "./components/CookieWall";
 
 const translations = {
   EN: {
@@ -44,8 +47,7 @@ const translations = {
   }
 };
 
-function PageWrapper({ children }) {
-  return (
+export const PageWrapper = ({ children }) => (
     <motion.div
       className="flex-1"
       initial={{ opacity: 0, y: 20 }}
@@ -55,8 +57,7 @@ function PageWrapper({ children }) {
     >
       {children}
     </motion.div>
-  );
-}
+);
 
 function Home({ language }) {
   const t = translations[language];
@@ -107,14 +108,6 @@ function Contact({ language }) {
 
 function Cart({ language }) {
   return <PageWrapper>{translations[language].cartText}</PageWrapper>;
-}
-
-function PrivacyPolicy({ language }) {
-  return <PageWrapper>{translations[language].privacy}</PageWrapper>;
-}
-
-function TermsOfService({ language }) {
-  return <PageWrapper>{translations[language].terms}</PageWrapper>;
 }
 
 function Wraps({ language }) {
@@ -170,6 +163,7 @@ function AnimatedRoutes({ language }) {
   const location = useLocation();
   return (
     <AnimatePresence mode="wait">
+      <CookieWall />
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<Home language={language} />} />
         <Route path="/about" element={<About language={language} />} />
