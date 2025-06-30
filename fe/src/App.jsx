@@ -163,7 +163,7 @@ function AnimatedRoutes({ language }) {
   const location = useLocation();
   return (
     <AnimatePresence mode="wait">
-      <CookieWall />
+      <CookieWall language={language} />
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<Home language={language} />} />
         <Route path="/about" element={<About language={language} />} />

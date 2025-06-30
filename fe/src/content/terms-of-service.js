@@ -1,62 +1,86 @@
-export const termsOfService = `
+export const termsOfService = {
+EN: `
 # Terms of Service
 
-**Effective Date:** [Insert Date]  
+**Effective Date:** 1st of July, 2025
 
-Welcome to **[Your Store Name]**. By using our services, you agree to the following terms.
+Welcome to Silky Wave. By using our services, you agree to the following terms.
 
 ---
 
 ## 1. Use of the Website
 
-- You agree to use our website legally and responsibly.  
-- You must not misuse or attempt to exploit our services.  
+- You agree to use our website legally and responsibly.
+- You must not misuse or attempt to exploit our services.
 
 ---
 
 ## 2. Products and Orders
 
-- Product prices are listed in EUR and include VAT unless stated otherwise.  
-- We reserve the right to cancel orders for any reason, including errors or stock shortages.  
-- Once confirmed, orders are processed and shipped within **[X]** business days.  
+- Product prices are listed in EUR and include VAT unless stated otherwise.
+- We reserve the right to cancel orders for any reason, including errors or stock shortages.
+- Once confirmed, orders are processed and shipped within 15-20 business days.
 
 ---
 
 ## 3. Payments
 
-- We accept major credit cards and payment gateways.  
-- All transactions are secure and processed via third-party providers.  
+- We accept major credit cards via payment gateway.
+- All transactions are secure and processed via third-party providers.
 
 ---
 
 ## 4. Refunds and Returns
 
-- Returns accepted within 14 days of delivery (in original condition).  
-- Refunds issued within 14 days after the return is received.  
+- Returns are accepted within 14 days of delivery. The product has to be in original condition (not washed or worn).
+- Refunds issued within 14 days after the return is received.
 
 ---
 
-## 5. Account Responsibilities
+## 5. Contact
 
-- You are responsible for keeping your account information secure.  
+- Silky Wave
+- Email: silkywave@gmail.com
+- Address: Prague, Czech Republic
+`,
+CZ: `
+# Obchodní podmínky
 
----
+**Účinnost od:** 1. 7. 2025
 
-## 6. Liability
-
-We are not liable for indirect damages or loss of data resulting from site use.  
-
----
-
-## 7. Governing Law
-
-These terms are governed by the laws of **[Your Country, EU]**.  
+Vítejte na webu Silky Wave. Používáním našich služeb souhlasíte s následujícími podmínkami.
 
 ---
 
-## 8. Contact
+## 1. Používání webu
+- Zavazujete se používat naše stránky zákonným způsobem.
+- Nesmíte zneužívat ani ohrožovat bezpečnost služeb.
 
-**[Your Store Name]**  
-Email: [your-email@example.com]  
-Address: [Your Business Address]
-`;
+---
+
+## 2. Produkty a objednávky
+- Ceny jsou uvedeny v Kč a zahrnují DPH (pokud není uvedeno jinak).
+- Vyhrazujeme si právo zrušit objednávku z důvodu chyby nebo nedostupnosti.
+- Po potvrzení objednávky je zboží odesláno do 15-20 pracovních dnů.
+
+---
+
+## 3. Platby
+- Přijímáme běžné debetní karty přes platební bránu.
+- Všechny transakce jsou zabezpečené a zpracované poskytovatelem platební brány.
+
+---
+
+## 4. Vrácení a reklamace
+- Vrácení je možné do 14 dnů od doručení. Zboží musí být v původním stavu (neprané, nenošené).
+- Peníze vracíme do 14 dnů po obdržení vráceného zboží. 
+
+---
+
+## 5. Kontakt
+
+- Silky Wave
+- Email: silkywave@gmail.com
+- Adresa: Praha, Česká republika
+`,
+};
