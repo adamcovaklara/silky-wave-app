@@ -48,7 +48,7 @@ You have the right to:
 - Request data portability
 - Withdraw consent at any time
 
-To exercise your rights, contact us at silkywave@gmail.com
+To exercise your rights, contact us at silkywave.goldfish@gmail.com.
 
 ---
 
@@ -83,7 +83,7 @@ If your data is transferred outside the EU, we ensure adequate protection throug
 ## 9. Contact
 
 - Silky Wave
-- Email: silkywave@gmail.com
+- Email: silkywave.goldfish@gmail.com
 - Address: Prague, Czech Republic
 `,
 CZ: `
@@ -128,7 +128,7 @@ Máte právo:
 - Na přenositelnost údajů
 - Kdykoliv odvolat souhlas
 
-Chcete-li tato práva uplatnit, kontaktujte nás na silkywave@gmail.com.
+Chcete-li tato práva uplatnit, kontaktujte nás na silkywave.goldfish@gmail.com.
 
 ---
 
@@ -158,7 +158,7 @@ Pokud jsou údaje přenášeny mimo EU, zajišťujeme jejich ochranu prostředni
 ## 9. Kontakt
 
 - Silky Wave
-- Email: silkywave@gmail.com
+- Email: silkywave.goldfish@gmail.com
 - Adresa: Praha, Česká republika
 `,
 };

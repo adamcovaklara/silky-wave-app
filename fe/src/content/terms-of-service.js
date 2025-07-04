@@ -40,7 +40,7 @@ Welcome to Silky Wave. By using our services, you agree to the following terms.
 ## 5. Contact
 
 - Silky Wave
-- Email: silkywave@gmail.com
+- Email: silkywave.goldfish@gmail.com
 - Address: Prague, Czech Republic
 `,
 CZ: `
@@ -80,7 +80,7 @@ Vítejte na webu Silky Wave. Používáním našich služeb souhlasíte s násle
 ## 5. Kontakt
 
 - Silky Wave
-- Email: silkywave@gmail.com
+- Email: silkywave.goldfish@gmail.com
 - Adresa: Praha, Česká republika
 `,
 };
