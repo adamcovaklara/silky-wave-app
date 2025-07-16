@@ -1,6 +1,6 @@
-export const termsOfService = {
+export const termsAndConditions = {
 EN: `
-# Terms of Service
+# Terms and Conditions
 
 **Effective Date:** 1st of July, 2025
 

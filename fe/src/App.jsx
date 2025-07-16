@@ -1,29 +1,33 @@
 import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ShoppingCart, Globe } from "lucide-react";
+import { ShoppingCart, Globe, Facebook, Instagram, Mail, Phone, Inbox } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 
 import PrivacyPolicy from "./pages/PrivacyPolicy";
-import TermsOfService from "./pages/TermsOfService";
+import Terms from "./pages/TermsAndConditions";
 import CookieWall from "./components/CookieWall";
 
 const translations = {
   EN: {
     home: "Home",
     about: "About",
+    blog: "Blog",
     contact: "Contact",
     cart: "Cart",
-    configuration: "Configuration",
+    customs: "Customs",
+    gallery: "Gallery",
     quickLinks: "Quick Links",
     connect: "Connect with us",
     wraps: "Wraps in Stock",
     shawls: "Shawls in Stock",
     aboutText: "This is the About page.",
+    blogText: "This is the newsletter archive.",
     contactText: "This is the Contact page.",
     cartText: "Your cart is currently empty.",
+    galleryText: "On the loom right now.",
     privacy: "Privacy Policy",
-    terms: "Terms of Service",
+    terms: "Terms and Conditions",
     availableWraps: "Available Wraps",
     availableShawls: "Available Shawls"
   },
@@ -31,15 +35,19 @@ const translations = {
     home: "Domů",
     about: "O nás",
     contact: "Kontakt",
+    blog: "Blog",
     cart: "Košík",
-    configuration: "Konfigurace",
+    customs: "Zakázky",
+    gallery: "Galerie",
     quickLinks: "Rychlé odkazy",
     connect: "Spojte se s námi",
     wraps: "Šátky skladem",
     shawls: "Šály skladem",
     aboutText: "Toto je stránka O nás.",
+    blogText: "Toto je archiv newsletteru.",
     contactText: "Toto je stránka Kontakt.",
     cartText: "Váš košík je momentálně prázdný.",
+    galleryText: "Právě na stavu.",
     privacy: "Zásady ochrany osobních údajů",
     terms: "Obchodní podmínky",
     availableWraps: "Dostupné šátky",
@@ -102,12 +110,16 @@ function About({ language }) {
   return <PageWrapper>{translations[language].aboutText}</PageWrapper>;
 }
 
-function Contact({ language }) {
-  return <PageWrapper>{translations[language].contactText}</PageWrapper>;
-}
-
 function Cart({ language }) {
   return <PageWrapper>{translations[language].cartText}</PageWrapper>;
+}
+
+function Gallery({ language }) {
+  return <PageWrapper>{translations[language].galleryText}</PageWrapper>;
+}
+
+function Blog({ language }) {
+  return <PageWrapper>{translations[language].blogText}</PageWrapper>;
 }
 
 function Wraps({ language }) {
@@ -118,7 +130,7 @@ function Shawls({ language }) {
   return <PageWrapper>{translations[language].availableShawls}</PageWrapper>;
 }
 
-function Configuration({ language }) {
+function Customs({ language }) {
   const [image, setImage] = useState(null);
   const [response, setResponse] = useState(null);
 
@@ -139,7 +151,7 @@ function Configuration({ language }) {
 
   return (
     <PageWrapper>
-      <h2 className="text-xl font-semibold mb-4">{translations[language].configurationText}</h2>
+      <h2 className="text-xl font-semibold mb-4">{translations[language].customsText}</h2>
       <input
         type="file"
         accept="image/*"
@@ -159,6 +171,79 @@ function Configuration({ language }) {
   );
 }
 
+export function Contact({ language }) {
+  const t = {
+    EN: {
+      title: "Contact Us",
+      name: "Your Name",
+      email: "Your Email",
+      message: "Message",
+      button: "Send Message",
+    },
+    CZ: {
+      title: "Kontaktujte nás",
+      name: "Vaše jméno",
+      email: "Váš e-mail",
+      message: "Zpráva",
+      button: "Odeslat zprávu",
+    },
+  };
+
+  const labels = t[language] || t.EN;
+
+  return (
+    <PageWrapper>
+      <div className="max-w-xl mx-auto px-4 py-12 text-center">
+        <h1 className="text-3xl font-semibold mb-8">{labels.title}</h1>
+        <form
+          method="POST"
+          action="/api/contact"
+          className="flex flex-col space-y-4 text-left"
+        >
+          <label className="flex flex-col">
+            <span className="mb-1 font-medium">{labels.name}</span>
+            <input
+              type="text"
+              name="name"
+              required
+              className="border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-purple-400"
+            />
+          </label>
+
+          <label className="flex flex-col">
+            <span className="mb-1 font-medium">{labels.email}</span>
+            <input
+              type="email"
+              name="email"
+              required
+              className="border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-purple-400"
+            />
+          </label>
+
+          <label className="flex flex-col">
+            <span className="mb-1 font-medium">{labels.message}</span>
+            <textarea
+              name="message"
+              rows="5"
+              required
+              className="border border-gray-300 rounded px-4 py-2 resize-none focus:outline-none focus:ring-2 focus:ring-purple-400"
+            ></textarea>
+          </label>
+
+          <div className="text-center pt-4">
+            <button
+              type="submit"
+              className="bg-purple-500 hover:bg-purple-700 text-white font-medium py-2 px-6 rounded transition"
+            >
+              {labels.button}
+            </button>
+          </div>
+        </form>
+      </div>
+    </PageWrapper>
+  );
+}
+
 function AnimatedRoutes({ language }) {
   const location = useLocation();
   return (
@@ -167,11 +252,13 @@ function AnimatedRoutes({ language }) {
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<Home language={language} />} />
         <Route path="/about" element={<About language={language} />} />
+        <Route path="/blog" element={<Blog language={language} />} />
         <Route path="/cart" element={<Cart language={language} />} />
         <Route path="/contact" element={<Contact language={language} />} />
-        <Route path="/configuration" element={<Configuration language={language} />} />
+        <Route path="/customs" element={<Customs language={language} />} />
+        <Route path="/gallery" element={<Gallery language={language} />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy language={language} />} />
-        <Route path="/terms-of-service" element={<TermsOfService language={language} />} />
+        <Route path="/terms-and-conditions" element={<Terms language={language} />} />
         <Route path="/wraps" element={<Wraps language={language} />} />
         <Route path="/shawls" element={<Shawls language={language} />} />
       </Routes>
@@ -210,9 +297,19 @@ export default function SimpleWebPage() {
                 {t.home}
               </Button>
             </Link>
-            <Link to="/configuration">
+            <Link to="/customs">
               <Button variant="ghost" className="transition-transform hover:scale-105 duration-300 text-purple-600 hover:text-purple-500">
-                {t.configuration}
+                {t.customs}
+              </Button>
+            </Link>
+            <Link to="/gallery">
+              <Button variant="ghost" className="transition-transform hover:scale-105 duration-300 text-purple-600 hover:text-purple-500">
+                {t.gallery}
+              </Button>
+            </Link>
+            <Link to="/blog">
+              <Button variant="ghost" className="transition-transform hover:scale-105 duration-300 text-purple-600 hover:text-purple-500">
+                {t.blog}
               </Button>
             </Link>
             <Link to="/about">
@@ -250,7 +347,7 @@ export default function SimpleWebPage() {
         <AnimatedRoutes language={language} />
 
         <footer className="bg-gradient-to-r from-yellow-300 via-green-300 via-blue-300 via-purple-300 to-pink-300 text-gray-900 p-6 mt-auto rounded-t-lg shadow-inner">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div>
               <h2 className="font-semibold mb-2">{t.quickLinks}</h2>
               <ul className="space-y-1">
@@ -260,7 +357,7 @@ export default function SimpleWebPage() {
                   </Link>
                 </li>
                 <li>
-                  <Link to="/terms-of-service" className="hover:underline">
+                  <Link to="/terms-and-conditions" className="hover:underline">
                     {t.terms}
                   </Link>
                 </li>
@@ -268,19 +365,45 @@ export default function SimpleWebPage() {
             </div>
             <div>
               <h2 className="font-semibold mb-2">{t.connect}</h2>
-              <ul className="space-y-1">
-                <li>
-                  <a
-                    href="https://facebook.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:underline"
-                  >
-                    Facebook
-                  </a>
-                </li>
-              </ul>
+              <div className="flex space-x-4 items-center">
+                <a
+                  href="https://instagram.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-pink-500"
+                >
+                  <Instagram size={24}/>
+                </a>
+                <a
+                  href="https://facebook.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-blue-600"
+                >
+                  <Facebook size={24} />
+                </a>
+              <a href="/newsletter" className="flex items-center space-x-2 hover:text-gray-600">
+                <Inbox size={24} />
+                <span>Newsletter</span>
+              </a>
+              </div>
             </div>
+            <div>
+              <h2 className="font-semibold mb-2">{t.contact}</h2>
+              <div>
+              <a href="mailto:silkywave.goldfish@gmail.com" className="flex items-center space-x-2 hover:text-gray-600">
+                <Mail size={20} />
+                <span>silkywave.goldfish@gmail.com</span>
+              </a>
+              <ul className="flex items-center space-x-2">
+                <Phone size={20} />
+                <span>+420 604 381 709</span>
+              </ul>
+              </div>
+            </div>
+          </div>
+          <div className="text-center text-xs text-gray-400 mt-6">
+            © {new Date().getFullYear()} SilkyWave
           </div>
         </footer>
       </div>
