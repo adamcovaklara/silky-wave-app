@@ -1,0 +1,10 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {},
+  "dependencies": {
+    "dotenv": "^17.2.1",
+    "resend": "^4.7.0"
+  }
+}

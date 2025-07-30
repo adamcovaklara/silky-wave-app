@@ -195,11 +195,33 @@ export function Contact({ language }) {
     <PageWrapper>
       <div className="max-w-xl mx-auto px-4 py-12 text-center">
         <h1 className="text-3xl font-semibold mb-8">{labels.title}</h1>
-        <form
-          method="POST"
-          action="/api/contact"
-          className="flex flex-col space-y-4 text-left"
-        >
+
+      <form
+        onSubmit={async (e) => {
+          e.preventDefault();
+          const form = e.target;
+
+          const response = await fetch("/api/send-email", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              name: form.name.value,
+              email: form.email.value,
+              message: form.message.value,
+            }),
+          });
+
+          if (response.ok) {
+            alert("Message sent!");
+            form.reset();
+          } else {
+            alert("Failed to send message.");
+          }
+        }}
+        className="space-y-4 text-left"
+      >
           <label className="flex flex-col">
             <span className="mb-1 font-medium">{labels.name}</span>
             <input
